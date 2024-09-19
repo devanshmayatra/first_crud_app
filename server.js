@@ -49,8 +49,16 @@ app.post("/", (req, res) => {
 
 });
 
+app.get("/:title", (req,res)=>{
+  const posts = db.get("posts").value();
+  const title = req.params.title;
+  const post = posts.find(post => post.title === title);
+  console.log(post)
+  res.render("post",{post});
+})
+
 
 //listen port
 app.listen(port, () => {
-  console.log(`App running on port ${port}`)
+  console.log(`App running on port  ${port}`)
 })
